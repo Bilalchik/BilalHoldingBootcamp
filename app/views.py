@@ -8,4 +8,4 @@ def index_view(request):
     return render(request, 'app/index.html', {'cars': cars})
 
 
-
+# представьте что мы написали большую логику
