@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <center>
+        <br><br>
+
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <label>Название: </label>
+            <input type="text" name="title"><br><br>
+
+            <label>Категория: </label>
+                <select name="category_id">
+                    {% for category in categories %}
+                        <option value="{{ category.id }}">{{ category.title }}</option>
+                    {% endfor %}
+                </select>
+            <br><br>
+
+            <label>Модель: </label>
+            <input type="text" name="model"><br><br>
+
+            <label>Год выпуска: </label>
+            <input type="number" name="year"><br><br>
+
+            <label>Цена: </label>
+            <input type="number" name="price"><br><br>
+
+            <label>Фото: </label>
+            <input type="file" name="image"><br><br>
+
+            <button type="submit">Создать</button>
+        </form>
+
+
+    </center>
+</body>
+</html>

@@ -17,18 +17,24 @@
   }
 </style>
 <body>
-<br><br><br>
+    <br><br><br>
+        <a href="{% url 'car_create' %}"><button type="button" class="btn btn-primary">Создать</button></a>
+    <br><br><br>
     <div class="row row-cols-1 row-cols-md-2 g-4">
       {% for car in cars %}
         <div class="col" style="width: 25%;">
-          <div class="card">
-            <img src="{{ car.image.url }}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{ car.title }}</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            </div>
-          </div>
+              <div class="card">
+                  <a href="{% url 'detail' car.id %}">
+                <img src="{{ car.image.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{ car.title }}</h5>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                </div>
+                      </a>
+              </div>
+
         </div>
+
       {% endfor %}
     </div>
 
