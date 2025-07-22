@@ -19,6 +19,38 @@
 <body>
     <br><br><br>
         <a href="{% url 'car_create' %}"><button type="button" class="btn btn-primary">Создать</button></a>
+        <a href="{% url 'register' %}"><button type="button" class="btn btn-primary">Регистрация</button></a>
+        <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Войти</button></a>
+        <a href="{% url 'logout' %}"><button type="button" class="btn btn-primary">Выйти</button></a>
+        {% if request.user.is_authenticated %}
+            <h1>{{ request.user.username }}</h1>
+        {% else %}
+            <h1>Вам нужно войти в систему</h1>
+        {% endif %}
+    <br><br><br>
+        <center>
+            {% if messages %}
+              <div class="container mt-3">
+                {% for message in messages %}
+                  <div
+                    class="alert alert-{{ message.tags }} alert-dismissible fade show"
+                    role="alert"
+                  >
+                    {{ message }}
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="alert"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endif %}
+            <form method="get" action=".">
+                <input type="text" name="search">
+            </form>
+        </center>
     <br><br><br>
     <div class="row row-cols-1 row-cols-md-2 g-4">
       {% for car in cars %}
@@ -39,4 +71,17 @@
     </div>
 
 </body>
+<script>
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){
+    // закрываем все .alert
+    document.querySelectorAll('.alert').forEach(function(el){
+      // Bootstrap 5: получаем/создаём экземпляр и закрываем
+      var instance = bootstrap.Alert.getOrCreateInstance(el);
+      instance.close();
+    });
+  }, 5000);
+});
+</script>
+
 </html>

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class Category(models.Model):
@@ -9,6 +10,7 @@ class Category(models.Model):
 
 
 class Car(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=123)
     model = models.CharField(max_length=123)
     category = models.ForeignKey(Category, on_delete=models.PROTECT, blank=True, null=True)
@@ -18,4 +20,3 @@ class Car(models.Model):
 
     def __str__(self):
         return self.title
-
